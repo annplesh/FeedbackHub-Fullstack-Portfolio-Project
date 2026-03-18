@@ -107,12 +107,12 @@ export default function SubmitPage({ onSubmit }) {
 
   // ── Form ────────────────────────────────────────────────
   return (
-    <main className="page-enter max-w-xl mx-auto px-3 py-12">
-      <div className="mb-8">
-        <p className="text-[11px] uppercase tracking-widest text-accent font-semibold mb-1.5">
+    <main className="page-enter max-w-xl mx-auto px-3 xs:px-2 py-12 xs:py-10">
+      <div className="mb-7">
+        <p className="text-[11px] xs:text-[10px] uppercase tracking-widest text-accent font-semibold mb-1.5">
           Share your experience
         </p>
-        <h1 className="font-display text-4xl text-ink mb-2.5">
+        <h1 className="font-display text-4xl xs:text-2xl text-ink mb-2.5">
           Leave a Review
         </h1>
         <p className="text-muted text-sm leading-relaxed">
@@ -124,11 +124,11 @@ export default function SubmitPage({ onSubmit }) {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="bg-white rounded-xl border border-cream shadow-sm p-5 space-y-5"
+        className="bg-white rounded-xl border border-cream shadow-sm p-5 xs:p-3 space-y-5 xs:space-y-4"
       >
         {/* Name field */}
         <div className="space-y-1.5">
-          <label htmlFor="name" className="block text-sm font-medium text-ink">
+          <label htmlFor="name" className="block text-xs xs:text-[10px] font-medium text-ink">
             Your name
           </label>
           <input
@@ -142,7 +142,7 @@ export default function SubmitPage({ onSubmit }) {
             onBlur={() => validateField("name")}
             placeholder="Jane Doe"
             className={[
-              "field-input w-full px-3 py-2 rounded-lg border text-sm text-ink placeholder-muted bg-paper transition-colors",
+              "field-input w-full px-3 py-2 rounded-lg border text-sm xs:text-xs text-ink placeholder-muted bg-paper transition-colors",
               errors.name ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
@@ -154,7 +154,7 @@ export default function SubmitPage({ onSubmit }) {
           <div className="flex items-baseline justify-between">
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-ink"
+              className="block text-xs xs:text-[10px] font-medium text-ink"
             >
               Your message
             </label>
@@ -175,7 +175,7 @@ export default function SubmitPage({ onSubmit }) {
             placeholder="Tell us what you think…"
             rows={4}
             className={[
-              "field-input w-full px-3 py-2 rounded-lg border text-sm text-ink placeholder-muted bg-paper resize-none transition-colors",
+              "field-input w-full px-3 py-2 rounded-lg border text-sm xs:text-xs text-ink placeholder-muted bg-paper resize-none transition-colors",
               errors.message ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
@@ -208,7 +208,7 @@ export default function SubmitPage({ onSubmit }) {
             !hasMeaningfulMessage(message) ||
             rating === 0
           }
-          className="w-full py-2.5 rounded-lg text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-ink text-paper hover:bg-accent active:scale-95 focus:outline-none focus:ring-0"
+          className="w-full py-2 rounded-lg text-xs xs:text-[10px] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-ink text-paper hover:bg-accent active:scale-95 focus:outline-none focus:ring-0"
         >
           {status === "submitting" ? "Submitting…" : "Submit Feedback"}
         </button>

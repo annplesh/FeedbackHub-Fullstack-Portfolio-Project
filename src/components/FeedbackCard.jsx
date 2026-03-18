@@ -38,14 +38,14 @@ export default function FeedbackCard({ item, index = 0 }) {
 
   return (
     <article
-      className="feedback-card card-reveal bg-white rounded-xl border border-cream p-4 flex flex-col gap-3"
+      className="feedback-card card-reveal bg-white rounded-xl border border-cream p-3 xs:p-2.5 flex flex-col gap-2.5 xs:gap-2"
       style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Header: avatar + name/date + rating pill */}
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
           <div
-            className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 ${colorClass}`}
+            className={`w-9 h-9 xs:w-8 xs:h-8 rounded-full flex items-center justify-center text-xs xs:text-[10px] font-semibold shrink-0 ${colorClass}`}
           >
             {initials}
           </div>
