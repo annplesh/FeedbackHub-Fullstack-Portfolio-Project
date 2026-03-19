@@ -51,6 +51,7 @@ export function useFeedback() {
         message,
         rating,
         approved: true,
+        date: new Date().toISOString(), // UTC timestamp
       },
     ]);
 
