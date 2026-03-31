@@ -166,7 +166,7 @@ export default function SubmitPage({ onSubmit, categories = [], onViewAll }) {
               if (errors.name) setErrors((p) => ({ ...p, name: "" }));
             }}
             onBlur={() => validateField("name")}
-            placeholder="Jane Doe"
+            placeholder="Alex Johnson"
             className={[
               "field-input w-full px-3 py-2 rounded-lg border text-sm xs:text-xs text-ink placeholder-muted bg-paper transition-colors",
               errors.name ? "border-red-400 bg-red-50" : "border-cream",

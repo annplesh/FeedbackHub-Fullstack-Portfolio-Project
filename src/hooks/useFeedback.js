@@ -169,6 +169,15 @@ export function useFeedback() {
   async function signUp({ email, password }) {
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) throw new Error(error.message);
+
+    // Send welcome email — don't block registration if it fails
+    try {
+      await supabase.functions.invoke("send-welcome-email", {
+        body: { email },
+      });
+    } catch (err) {
+      console.error("Welcome email failed:", err.message);
+    }
   }
 
   // Sign in
