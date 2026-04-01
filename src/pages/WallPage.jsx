@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FeedbackCard from "../components/FeedbackCard";
 import StarRating from "../components/StarRating";
+import AskAI from "../components/AskAI";
 
 // WallPage — public grid of all approved feedback.
 // Includes sort controls and a summary stats bar.
@@ -153,6 +154,9 @@ export default function WallPage({
           ))}
         </div>
       )}
+
+      {/* AI analysis */}
+      {items.length > 0 && <AskAI />}
 
       {/* Grid or empty state */}
       {sorted.length === 0 ? (

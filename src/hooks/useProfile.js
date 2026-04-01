@@ -25,7 +25,7 @@ export function useProfile(userId, onAvatarUpdate) {
         .from("profiles")
         .select("avatar_url")
         .eq("id", userId)
-        .single();
+        .maybeSingle();
 
       if (data?.avatar_url) setAvatarUrl(data.avatar_url);
     } catch (err) {
