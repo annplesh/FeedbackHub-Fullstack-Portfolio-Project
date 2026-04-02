@@ -4,27 +4,43 @@
 
 ```
 feedback-platform/
-├── index.html                  # HTML entry point, loads Google Fonts
+├── index.html                  # Main HTML entry point, loads Google Fonts
 ├── package.json                # Dependencies and npm scripts
-├── vite.config.js              # Vite + React plugin config
-├── tailwind.config.js          # Custom colors and fonts
-├── postcss.config.js           # PostCSS plugins for Tailwind
+├── vite.config.js              # Vite config with React plugin
+├── tailwind.config.js          # Tailwind setup: colors, fonts, breakpoints
+├── postcss.config.js           # PostCSS plugins (Tailwind, autoprefixer)
+├── .env                        # Supabase URL + anon key (local only)
+├── .env.example                # Template for environment variables
+├── .gitignore                  # Git ignore rules
+├── CHANGELOG.md                # Project change history
+│
 └── src/
     ├── main.jsx                # React root — mounts <App /> into #root
-    ├── App.jsx                 # Root component — routing state + layout
-    ├── index.css               # Tailwind directives + global CSS/animations
+    ├── App.jsx                 # Root component: routing + layout
+    ├── index.css               # Tailwind directives + global styles
+    ├── supabaseClient.js       # Supabase client initialization
+    │
     ├── data/
-    │   └── mockFeedback.js     # Hardcoded seed data — do not modify
+    │   └── mockFeedback.js     # Hardcoded seed data (do not modify)
+    │
     ├── hooks/
-    │   └── useFeedback.js      # All feedback state and actions
+    │   ├── useFeedback.js      # Feedback CRUD logic + Supabase queries
+    │   └── useProfile.js       # User profile: avatar, name, storage ops
+    │
     ├── components/
-    │   ├── Navbar.jsx          # Top navigation bar — shared across pages
-    │   ├── StarRating.jsx      # Dual-mode star component (input + display)
-    │   └── FeedbackCard.jsx    # Single review card used on the Wall
+    │   ├── Navbar.jsx          # Top navigation bar
+    │   ├── StarRating.jsx      # Star component (input + display modes)
+    │   ├── FeedbackCard.jsx    # Single feedback card for the Wall
+    │   ├── AskAI.jsx           # AI response generator (Edge Function)
+    │   ├── AvatarUpload.jsx    # Avatar upload to Supabase Storage
+    │   └── CategorySelect.jsx  # Category dropdown for feedback form
+    │
     └── pages/
-        ├── SubmitPage.jsx      # Public form — name, message, rating
-        └── WallPage.jsx        # Public grid — approved feedback + sort
-```
+        ├── LoginPage.jsx       # Email login (magic link)
+        ├── RegisterPage.jsx    # User registration (name + email)
+        ├── SubmitPage.jsx      # Public feedback submission form
+        ├── WallPage.jsx        # Public feedback wall + sorting
+        └── AdminPage.jsx       # Admin moderation: approve / reject
 
 ---
 
@@ -76,12 +92,14 @@ feedback-platform/
 
 ### Data Flow
 ```
+
 mockFeedback.js
-  → useFeedback.js  (state initialisation)
-    → App.jsx       (destructures approvedItems + submitFeedback)
-      → SubmitPage  (receives onSubmit callback)
-      → WallPage    (receives items array)
-        → FeedbackCard (receives single item + index)
+→ useFeedback.js (state initialisation)
+→ App.jsx (destructures approvedItems + submitFeedback)
+→ SubmitPage (receives onSubmit callback)
+→ WallPage (receives items array)
+→ FeedbackCard (receives single item + index)
+
 ```
 
 ### Components
@@ -90,3 +108,10 @@ mockFeedback.js
 - `Navbar` — receives `page` and `setPage`; renders navigation state, triggers no side effects.
 - `SubmitPage` — owns local form state (name, message, rating, errors, status); calls `onSubmit` on success.
 - `WallPage` — owns local `sort` state; derives sorted list via pure function; renders `FeedbackCard` per item.
+
+### Workflow
+- Before any changes — list affected files and describe what will change (one line per file).
+- Wait for confirmation before editing.
+- After changes — one line per file: what was changed.
+- If task touches more than 3 files — flag it and ask for confirmation.
+```
