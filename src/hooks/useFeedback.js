@@ -115,7 +115,7 @@ export function useFeedback() {
       const itemsWithProfiles = await fetchProfiles(data);
       // Silent refetch: don't replace existing data with empty result
       // (can happen when JWT has expired and token refresh is still in progress)
-      if (showLoading || itemsWithProfiles.length > 0) {
+      if (itemsWithProfiles.length > 0) {
         setApprovedItems(itemsWithProfiles);
       }
       setHasMore(data.length < count);
