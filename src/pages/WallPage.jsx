@@ -204,7 +204,7 @@ export default function WallPage({
             <button
               onClick={handleLoadMore}
               disabled={isLoadingMore}
-              className="px-6 py-2.5 rounded-full bg-ink text-paper text-sm font-medium hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] transition-[colors,transform] disabled:opacity-50 focus:outline-none focus:ring-0"
+              className="w-full sm:w-auto px-6 xxs:px-4 py-2.5 rounded-full bg-ink text-paper text-sm font-medium hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] transition-[colors,transform] disabled:opacity-50 focus:outline-none focus:ring-0"
             >
               {isLoadingMore ? "Loading..." : "Load more"}
             </button>
