@@ -149,7 +149,7 @@ export default function WallPage({
               className={[
                 "px-2.5 py-1 xs:px-2 xs:py-0.5 rounded-full text-[11px] xs:text-[10px] font-medium border transition-[colors,transform]",
                 "whitespace-normal inline-block max-w-[45%] xs:max-w-[42%] leading-tight",
-                "focus:outline-none focus:ring-2 focus:ring-black/10",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-black/10",
                 sort === opt.value
                   ? "bg-cream text-ink border-cream"
                   : "bg-white text-muted border-cream hover:bg-black/5 active:bg-black/10 active:scale-95 [touch-action:manipulation]",
