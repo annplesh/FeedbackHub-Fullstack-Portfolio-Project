@@ -75,6 +75,7 @@ export default function Navbar({
               <li key={link.id}>
                 <button
                   onClick={() => setPage(link.id)}
+                  data-testid={`nav-${link.id}`}
                   className={[
                     "px-3 py-1.5 xs:px-2 xs:py-0.5 rounded-md text-xs xs:text-[10px] font-medium [touch-action:manipulation] transition-[colors,transform] focus:outline-none focus:ring-0 whitespace-nowrap",
                     page === link.id
@@ -93,6 +94,7 @@ export default function Navbar({
             <div className="flex items-center gap-1 ml-2">
               <button
                 onClick={() => setPage("login")}
+                data-testid="nav-sign-in"
                 className={[
                   "px-3 py-1.5 xs:px-2 xs:py-0.5 rounded-md text-xs font-medium [touch-action:manipulation] transition-[colors,transform] focus:outline-none focus:ring-0 whitespace-nowrap",
                   page === "login"

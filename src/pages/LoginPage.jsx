@@ -81,13 +81,14 @@ export default function LoginPage({ onLogin, setPage }) {
               if (errors.email) setErrors((p) => ({ ...p, email: "" }));
             }}
             placeholder="jane@example.com"
+            data-testid="login-email"
             className={[
               "field-input w-full px-3 py-2 rounded-lg border text-sm text-ink placeholder-muted bg-paper transition-colors",
               errors.email ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs">{errors.email}</p>
+            <p className="text-red-500 text-xs" data-testid="login-email-error">{errors.email}</p>
           )}
         </div>
 
@@ -109,6 +110,7 @@ export default function LoginPage({ onLogin, setPage }) {
                 if (errors.password) setErrors((p) => ({ ...p, password: "" }));
               }}
               placeholder="••••••••"
+              data-testid="login-password"
               className={[
                 "field-input w-full px-3 py-2 pr-10 rounded-lg border text-sm text-ink placeholder-muted bg-paper transition-colors",
                 errors.password ? "border-red-400 bg-red-50" : "border-cream",
@@ -154,17 +156,18 @@ export default function LoginPage({ onLogin, setPage }) {
             </button>
           </div>
           {errors.password && (
-            <p className="text-red-500 text-xs">{errors.password}</p>
+            <p className="text-red-500 text-xs" data-testid="login-password-error">{errors.password}</p>
           )}
         </div>
 
         {/* Auth error */}
-        {authError && <p className="text-red-500 text-xs">{authError}</p>}
+        {authError && <p className="text-red-500 text-xs" data-testid="login-auth-error">{authError}</p>}
 
         {/* Submit */}
         <button
           type="submit"
           disabled={status === "submitting"}
+          data-testid="login-submit"
           className="w-full py-2 rounded-lg text-xs font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-ink text-paper hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] focus:outline-none focus:ring-0"
         >
           {status === "submitting" ? "Signing in…" : "Sign In"}
@@ -181,6 +184,7 @@ export default function LoginPage({ onLogin, setPage }) {
         <button
           type="button"
           onClick={handleGoogleSignIn}
+          data-testid="login-google"
           className="w-full py-2 rounded-lg text-xs font-semibold border border-cream bg-white text-ink hover:bg-cream active:bg-cream active:scale-95 [touch-action:manipulation] transition-[colors,transform] flex items-center justify-center gap-2 focus:outline-none focus:ring-0"
         >
           <svg width="16" height="16" viewBox="0 0 24 24">

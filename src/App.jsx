@@ -37,12 +37,12 @@ export default function App() {
 
   async function handleLogin(credentials) {
     await signIn(credentials);
-    setPage("submit");
+    setPage("wall");
   }
 
   async function handleRegister(credentials) {
     await signUp(credentials);
-    setPage("submit");
+    setPage("login");
   }
 
   async function handleAdminPage() {

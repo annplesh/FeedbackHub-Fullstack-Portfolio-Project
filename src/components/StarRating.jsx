@@ -32,6 +32,7 @@ export default function StarRating({ value, onChange, size = "md" }) {
           role={onChange ? "button" : undefined}
           tabIndex={onChange ? 0 : undefined}
           aria-label={onChange ? `${star} star` : undefined}
+          data-testid={onChange ? `star-${star}` : undefined}
         >
           ★
         </span>

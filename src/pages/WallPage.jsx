@@ -93,7 +93,7 @@ export default function WallPage({
   const roundedAvg = Math.round(average);
 
   return (
-    <main className="page-enter max-w-5xl mx-auto px-3 xs:px-2 py-8 xs:py-6">
+    <main data-testid="wall-page" className="page-enter max-w-5xl mx-auto px-3 xs:px-2 py-8 xs:py-6">
       {/* Page header + summary stats */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
         <div>
@@ -175,6 +175,7 @@ export default function WallPage({
           {onLeaveReview && (
             <button
               onClick={onLeaveReview}
+              data-testid="leave-review-button"
               className="mt-3 px-4 py-2 rounded-full bg-ink text-paper text-sm font-medium hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] transition-[colors,transform] focus:outline-none focus:ring-0"
             >
               Leave a Review

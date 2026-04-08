@@ -92,13 +92,14 @@ export default function RegisterPage({ onRegister, setPage }) {
               if (errors.email) setErrors((p) => ({ ...p, email: "" }));
             }}
             placeholder="jane@example.com"
+            data-testid="register-email"
             className={[
               "field-input w-full px-3 py-2 rounded-lg border text-sm text-ink placeholder-muted bg-paper transition-colors",
               errors.email ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs">{errors.email}</p>
+            <p className="text-red-500 text-xs" data-testid="register-email-error">{errors.email}</p>
           )}
         </div>
 
@@ -120,6 +121,7 @@ export default function RegisterPage({ onRegister, setPage }) {
                 if (errors.password) setErrors((p) => ({ ...p, password: "" }));
               }}
               placeholder="••••••••"
+              data-testid="register-password"
               className={[
                 "field-input w-full px-3 py-2 pr-10 rounded-lg border text-sm text-ink placeholder-muted bg-paper transition-colors",
                 errors.password ? "border-red-400 bg-red-50" : "border-cream",
@@ -219,17 +221,18 @@ export default function RegisterPage({ onRegister, setPage }) {
             })()}
 
           {errors.password && (
-            <p className="text-red-500 text-xs">{errors.password}</p>
+            <p className="text-red-500 text-xs" data-testid="register-password-error">{errors.password}</p>
           )}
         </div>
 
         {/* Auth error */}
-        {authError && <p className="text-red-500 text-xs">{authError}</p>}
+        {authError && <p className="text-red-500 text-xs" data-testid="register-auth-error">{authError}</p>}
 
         {/* Submit */}
         <button
           type="submit"
           disabled={status === "submitting"}
+          data-testid="register-submit"
           className="w-full py-2 rounded-lg text-xs font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-ink text-paper hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] focus:outline-none focus:ring-0"
         >
           {status === "submitting" ? "Creating account…" : "Sign Up"}
@@ -246,6 +249,7 @@ export default function RegisterPage({ onRegister, setPage }) {
         <button
           type="button"
           onClick={handleGoogleSignIn}
+          data-testid="register-google"
           className="w-full py-2 rounded-lg text-xs font-semibold border border-cream bg-white text-ink hover:bg-cream active:bg-cream active:scale-95 [touch-action:manipulation] transition-[colors,transform] flex items-center justify-center gap-2 focus:outline-none focus:ring-0"
         >
           <svg width="16" height="16" viewBox="0 0 24 24">

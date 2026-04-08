@@ -97,7 +97,7 @@ export default function SubmitPage({ onSubmit, categories = [], onViewAll }) {
   // ── Success screen ──────────────────────────────────────
   if (status === "success") {
     return (
-      <div className="page-enter min-h-[60vh] flex items-center justify-center px-4">
+      <div data-testid="submit-success" className="page-enter min-h-[60vh] flex items-center justify-center px-4">
         <div className="text-center max-w-sm">
           <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6 text-2xl">
             ✓
@@ -167,12 +167,13 @@ export default function SubmitPage({ onSubmit, categories = [], onViewAll }) {
             }}
             onBlur={() => validateField("name")}
             placeholder="Alex Johnson"
+            data-testid="submit-name"
             className={[
               "field-input w-full px-3 py-2 rounded-lg border text-sm xs:text-xs text-ink placeholder-muted bg-paper transition-colors",
               errors.name ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
-          {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+          {errors.name && <p className="text-red-500 text-xs" data-testid="submit-name-error">{errors.name}</p>}
         </div>
 
         {/* Category field */}
@@ -219,13 +220,14 @@ export default function SubmitPage({ onSubmit, categories = [], onViewAll }) {
             onBlur={() => validateField("message")}
             placeholder="Tell us what you think…"
             rows={4}
+            data-testid="submit-message"
             className={[
               "field-input w-full px-3 py-2 rounded-lg border text-sm xs:text-xs text-ink placeholder-muted bg-paper resize-none transition-colors",
               errors.message ? "border-red-400 bg-red-50" : "border-cream",
             ].join(" ")}
           />
           {errors.message && (
-            <p className="text-red-500 text-xs">{errors.message}</p>
+            <p className="text-red-500 text-xs" data-testid="submit-message-error">{errors.message}</p>
           )}
         </div>
 
@@ -240,19 +242,15 @@ export default function SubmitPage({ onSubmit, categories = [], onViewAll }) {
             }}
           />
           {errors.rating && (
-            <p className="text-red-500 text-xs">{errors.rating}</p>
+            <p className="text-red-500 text-xs" data-testid="submit-rating-error">{errors.rating}</p>
           )}
         </div>
 
         {/* Submit button */}
         <button
           type="submit"
-          disabled={
-            status === "submitting" ||
-            !hasMeaningfulText(name) ||
-            !hasMeaningfulMessage(message) ||
-            rating === 0
-          }
+          disabled={status === "submitting"}
+          data-testid="submit-button"
           className="w-full py-2 rounded-lg text-xs xs:text-[10px] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-ink text-paper hover:bg-accent active:bg-accent/80 active:scale-95 [touch-action:manipulation] focus:outline-none focus:ring-0"
         >
           {status === "submitting" ? "Submitting…" : "Submit Feedback"}
