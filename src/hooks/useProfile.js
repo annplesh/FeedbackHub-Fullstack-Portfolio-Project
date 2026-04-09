@@ -36,6 +36,14 @@ export function useProfile(userId, onAvatarUpdate) {
 
   // Upload avatar to Supabase Storage
   async function uploadAvatar(file) {
+    // Validate MIME type
+    const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      setError("Only JPEG, PNG and WebP images are allowed");
+      setTimeout(() => setError(null), 5000);
+      return;
+    }
+
     // Validate file size (max 2MB)
     if (file.size > 2 * 1024 * 1024) {
       setError("File size must be under 2MB");

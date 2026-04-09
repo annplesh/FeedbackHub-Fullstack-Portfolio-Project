@@ -49,7 +49,7 @@ export default function RegisterPage({ onRegister, setPage }) {
     try {
       await onRegister({ email: email.trim(), password });
     } catch (err) {
-      setAuthError(err.message);
+      setAuthError("Something went wrong. Please try again.");
       setStatus("error");
     }
   }
