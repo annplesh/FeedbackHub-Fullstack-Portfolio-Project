@@ -4,6 +4,8 @@ A clean, modern full‑stack feedback platform built with React, Vite, Tailwind 
 Users can submit reviews, browse community feedback, sort by rating or date, and explore AI‑powered insights.  
 Designed as a polished, production‑ready mini‑SaaS showcasing real full‑stack architecture, realtime features, secure auth, and refined UX.
 
+**Live demo:** https://feedback-hub-fullstack-portfolio-pr.vercel.app
+
 ![Hero Screenshot — WallPage with AI](./screenshots/wall-ai-hero.png)
 
 ---
@@ -21,6 +23,9 @@ Designed as a polished, production‑ready mini‑SaaS showcasing real full‑st
 - Realtime updates via Supabase channels
 - Skeleton loaders, toast notifications, staggered animations
 - Responsive layout (1 → 2 → 3 columns)
+- Category filter — filter reviews by topic client-side
+- Client-side rate limiting on form submission (30s) and AI requests (10s)
+- Accessible components — ARIA roles, labels, and states throughout
 - Clean typography, custom favicon, polished UI details
 
 ---
@@ -88,6 +93,13 @@ Designed as a polished, production‑ready mini‑SaaS showcasing real full‑st
 - Extended documentation and project structure
 - Added CHANGELOG.md
 
+### **Security & Accessibility (2026)**
+
+- CORS allowlist in Edge Functions — requests accepted only from known origins
+- ARIA roles on CategorySelect (listbox/option) and StarRating (img/group)
+- Client-side rate limiting: 30s cooldown after form submission, 10s after AI requests
+- Category filter added to WallPage
+
 ---
 
 ## 📸 Screenshots
@@ -126,6 +138,17 @@ Designed as a polished, production‑ready mini‑SaaS showcasing real full‑st
 **Email:** Resend  
 **Auth:** Google OAuth  
 **Fonts:** Cormorant Garamond, Outfit
+
+---
+
+## 🔒 Security
+
+- **Row Level Security (RLS)** — all tables protected; users can only read/write their own data
+- **PKCE OAuth flow** — prevents token leakage on Google sign-in redirect
+- **CORS allowlist** in Edge Functions — known origins only
+- **Input validation** — client and server side
+- **Client-side rate limiting** — 30s form cooldown, 10s AI cooldown
+- **Service role key isolation** — only Edge Functions use service role key
 
 ---
 
