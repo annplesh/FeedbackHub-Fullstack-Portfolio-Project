@@ -104,23 +104,28 @@ export function useFeedback() {
   async function fetchFeedback(showLoading = true) {
     if (showLoading) setLoading(true);
 
-    const { data, error, count } = await supabase
-      .from("feedback")
-      .select("*, categories(name)", { count: "exact" })
-      .eq("approved", true)
-      .order("date", { ascending: false })
-      .range(0, PAGE_SIZE - 1);
+    try {
+      const { data, error, count } = await supabase
+        .from("feedback")
+        .select("*, categories(name)", { count: "exact" })
+        .eq("approved", true)
+        .order("date", { ascending: false })
+        .range(0, PAGE_SIZE - 1);
 
-    if (error) {
-      setError(error.message);
-    } else {
-      const itemsWithProfiles = await fetchProfiles(data);
-      // Silent refetch: don't replace existing data with empty result
-      // (can happen when JWT has expired and token refresh is still in progress)
-      if (itemsWithProfiles.length > 0) {
-        setApprovedItems(itemsWithProfiles);
+      if (error) {
+        setError(error.message);
+      } else {
+        const itemsWithProfiles = await fetchProfiles(data);
+        // Silent refetch: don't replace existing data with empty result
+        // (can happen when JWT has expired and token refresh is still in progress)
+        if (itemsWithProfiles.length > 0) {
+          setApprovedItems(itemsWithProfiles);
+        }
+        setHasMore(data.length < count);
       }
-      setHasMore(data.length < count);
+    } catch (err) {
+      setError("Network error. Please check your connection.");
+      Sentry.captureException(err);
     }
 
     if (showLoading) setLoading(false);

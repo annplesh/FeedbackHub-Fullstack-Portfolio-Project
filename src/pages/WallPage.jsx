@@ -48,6 +48,7 @@ export default function WallPage({
   items,
   categories = [],
   loading,
+  error,
   onLeaveReview,
   user,
   isAdmin,
@@ -85,6 +86,18 @@ export default function WallPage({
               className="bg-white rounded-xl border border-cream p-3 h-40 animate-pulse"
             />
           ))}
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="page-enter max-w-5xl mx-auto px-3 xs:px-2 py-8 xs:py-6">
+        <div className="text-center py-14 xs:py-10 text-muted">
+          <p className="text-4xl xs:text-3xl mb-3">⚠️</p>
+          <p className="font-medium text-ink">Failed to load reviews</p>
+          <p className="text-sm xs:text-xs mt-1">Check your connection and try again.</p>
         </div>
       </main>
     );

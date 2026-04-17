@@ -31,6 +31,7 @@ export default function App() {
     signIn,
     signOut,
     loading,
+    error,
     hasMore,
     isLoadingMore,
     loadMore,
@@ -121,6 +122,7 @@ export default function App() {
           items={approvedItems}
           categories={categories}
           loading={loading}
+          error={error}
           user={user}
           isAdmin={isAdmin}
           onDelete={deleteFeedback}
